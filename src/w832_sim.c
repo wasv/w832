@@ -1,15 +1,29 @@
 #include <stdio.h>
+#include <unistd.h>
 
 #include "w832.h"
 
 int main(int argc, char **argv ) {
+    /* Initialize emulator */
     struct w832_state w832;
     w832_init(&w832);
 
-    /* Read program from file. */
+    /* Read program from file */
     FILE *f = fopen(argv[1], "rb");
     fread(w832.M, sizeof(w832.M[0]), W832_MEMSIZE, f);
 
-    w832_disp(&w832);
+    /* Clear screen */
+    puts("\e[1;1H\e[2J");
+
+    while(1)
+    {
+        /* Simulate one iteration */
+        w832_step(&w832);
+        /* Update display */
+        w832_disp(&w832);
+
+        usleep(500000);
+    }
+    puts("\e[1;1H\e[2J");
     return 0;
 }
