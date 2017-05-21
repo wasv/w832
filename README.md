@@ -17,3 +17,6 @@ editor program.hex
 make program.bin
 bin/w832_sim program.bin
 ```
+
+## Credits
+Inspired by [c88](https://github.com/aquila12/c88-js), which is based on the [SSEM](https://en.wikipedia.org/wiki/Manchester_Small-Scale_Experimental_Machine). I also have a modified fork of [c88](https://github.com/aquila12/c88-js) called [c1616](https://github.com/wastevensv/c1616-js).
