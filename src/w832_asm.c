@@ -5,9 +5,9 @@
 #include "w832.h"
 
 int main(int argc, char **argv) {
-    if(argc == 1)
+    if(argc <= 2)
     {
-	fputs("No program specified.\n", stderr);
+	fputs("Usage: w832_asm [infile] [outfile].\n", stderr);
 	return -1;
     }
     /* Read program from file */
