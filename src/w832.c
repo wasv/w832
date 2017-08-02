@@ -71,10 +71,12 @@ void disp_row(uint8_t byte) {
 /* displays current state of w832 instance. */
 void w832_disp(struct w832_state *w832) {
     puts("\e[1;1H\e[2J");
-    for(int i = 0; i < W832_MEMSIZE; i++)
+    for(int i = 0; i < W832_MEMSIZE/2; i++)
     {
         printf("%02d: ", i);
         disp_row(w832->M[i]);
+        printf(" %02d: ", i+W832_MEMSIZE/2);
+        disp_row(w832->M[i+W832_MEMSIZE/2]);
         putc('\n', stdout);
     }
 
@@ -82,8 +84,7 @@ void w832_disp(struct w832_state *w832) {
     printf(" A: ");
     disp_row(w832->A);
 
-    putc('\n', stdout);
-    printf("PC: %02u", w832->PC);
+    printf(" PC: %02u", w832->PC);
     putc('\n', stdout);
 }
 
