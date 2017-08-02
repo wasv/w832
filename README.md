@@ -1,20 +1,18 @@
 # w832
-A sample instruction set and emulator. Uses 3 bit opcodes and 5 bit memory addresses. Can address 32 bytes of memory.
+A sample instruction set, assembler, and emulator. Uses 3 bit opcodes and 5 bit memory addresses. Can address 32 bytes of memory.
 
 ## Dependencies
-* xxd commandline tool (for converting ASCII .hex files into a .bin program).
-  * Alternatively, any hex editor will do.
+A POSIX C compiler, probably requires GCC. Untested on Windows.
 
 ## Building
 ```
-make
-bin/w832_sim test.bin
+make run
 ```
 
-## Compiling Programs
+## Assembling Programs
 ```
-editor program.hex
-make program.bin
+editor program.asm
+bin/w832_asm program.asm program.bin
 bin/w832_sim program.bin
 ```
 
