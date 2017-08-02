@@ -1,5 +1,6 @@
 #ifndef W832_H
 #define W832_H
+#include <stdio.h>
 #include <stdint.h>
 
 #define W832_MEMSIZE 32
@@ -18,4 +19,6 @@ void w832_step(struct w832_state *w832);
 /* displays current state of w832 instance. */
 void w832_disp(struct w832_state *w832);
 
+/* assembles a file and returns a memdump. */
+size_t w832_asmfile(FILE *fp, uint8_t *prog, size_t n);
 #endif

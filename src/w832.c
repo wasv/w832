@@ -2,6 +2,8 @@
 
 #include <stdio.h>
 #include <string.h>
+#include <stdlib.h>
+#include <unistd.h>
 
 /* Initializes state of w832. */
 void w832_init(struct w832_state *w832) {
@@ -83,4 +85,50 @@ void w832_disp(struct w832_state *w832) {
     putc('\n', stdout);
     printf("PC: %02u", w832->PC);
     putc('\n', stdout);
+}
+
+char w832_asmline(char *line, size_t n) {
+  uint8_t opcode = 0xFF;
+  uint8_t index = 0;
+  if(strncmp(line, "LOD", 3) == 0) {
+    opcode = 0;
+  } else if(strncmp(line, "STO", 3) == 0) {
+    opcode = 1;
+  } else if(strncmp(line, "CMP", 3) == 0) {
+    opcode = 2;
+  } else if(strncmp(line, "JMP", 3) == 0) {
+    opcode = 3;
+  } else if(strncmp(line, "ADD", 3) == 0) {
+    opcode = 4;
+  } else if(strncmp(line, "NEG", 3) == 0) {
+    opcode = 5;
+  } else if(strncmp(line, "AND", 3) == 0) {
+    opcode = 6;
+  } else if(strncmp(line, "NOT", 3) == 0) {
+    opcode = 7;
+  }
+
+  char *end = &line[n];
+  if(opcode == 0xFF) {
+    return strtol(line, &end, 0);
+  }
+  index = strtol(&line[3], &end, 0);
+  return (opcode << 5) | (index & 0x1F);
+}
+
+size_t w832_asmfile(FILE *fp, uint8_t *prog, size_t n) {
+    char *line = NULL;
+    size_t len = 0;
+    size_t prog_len = 0;
+    ssize_t read;
+
+    while(1)
+    {
+      read = getline(&line, &len, fp);
+      if(read == -1) break;
+      if(prog_len == n) break;
+      prog[prog_len++] = w832_asmline(line, read);
+    }
+    free(line);
+    return prog_len;
 }
