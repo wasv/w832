@@ -8,6 +8,11 @@ int main(int argc, char **argv ) {
     struct w832_state w832;
     w832_init(&w832);
 
+    if(argc == 1)
+    {
+        fputs("No program specified.\n", stderr);
+        return -1;
+    }
     /* Read program from file */
     FILE *f = fopen(argv[1], "rb");
     fread(w832.M, sizeof(w832.M[0]), W832_MEMSIZE, f);
