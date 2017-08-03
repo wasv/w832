@@ -10,8 +10,12 @@ all: bin/w832_sim bin/w832_asm
 run: all test.bin
 	bin/w832_sim test.bin
 
-install: all
-	cp bin/w832_sim bin/w832_asm ${INSTALL_DIR}
+install: ${INSTALL_DIR}/w832_sim ${INSTALL_DIR}/w832_asm
+
+${INSTALL_DIR}/w832_sim: bin/w832_sim
+	cp $< $@
+${INSTALL_DIR}/w832_asm: bin/w832_asm
+	cp $< $@
 
 bin/w832_sim: ${SIM_SRCS}
 	@mkdir -p bin
