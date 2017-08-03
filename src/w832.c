@@ -121,15 +121,22 @@ size_t w832_asmfile(FILE *fp, uint8_t *prog, size_t n) {
     char *line = NULL;
     size_t len = 0;
     size_t prog_len = 0;
+    uint8_t iptr = 0;
     ssize_t read;
 
-    while(1)
+    for(prog_len = 0;prog_len < n; prog_len++)
     {
       read = getline(&line, &len, fp);
       if(read == -1) break;
       if(prog_len == n) break;
-      prog[prog_len++] = w832_asmline(line, read);
+      if(strncmp(line, "ORG", 3) == 0) {
+         char *end = &line[n];
+         iptr = strtol(&line[3], &end, 0);
+         iptr &= 0x1F;
+      } else {
+          prog[iptr++] = w832_asmline(line, read);
+      }
     }
     free(line);
-    return prog_len;
+    return n;
 }
