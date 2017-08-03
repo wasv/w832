@@ -16,5 +16,17 @@ bin/w832_asm program.asm program.bin
 bin/w832_sim program.bin
 ```
 
+## Assembly Language Reference
+All instructions can act on the memory, program counter, and the primary register A (the only general purpose register).
+
+* `LOD n` LOAD value from memory address N into register A.
+* `STO n` STORE register A in memory address N.
+* `CMP n` COMPARE register A to memory address N. Skip next instruction if equal.
+* `JMP n` JUMP PC to memory address N.
+* `ADD n` ADD value from memory address N to register A.
+* `NEG`   TWOS COMPLEMENT NEGATE value in register A.
+* `AND n` AND value from memory address N with register A.
+* `NOT`   BINARY NEGATE value in register A.
+
 ## Credits
 Inspired by [c88](https://github.com/aquila12/c88-js), which is based on the [SSEM](https://en.wikipedia.org/wiki/Manchester_Small-Scale_Experimental_Machine). I also have a modified fork of [c88](https://github.com/aquila12/c88-js) called [c1616](https://github.com/wastevensv/c1616-js).
