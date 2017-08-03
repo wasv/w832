@@ -34,8 +34,25 @@ All instructions can act on the memory, program counter, and the primary registe
 
 * `ORG n` Only affects assembly process. Places the following
   instruction at memory location n, the one after that at n+1, and so on.
-  
-## 
+
+## Example Program
+This program counts by 4's in the addresses 16-31
+```
+LOD 16
+ADD 16
+STO 17
+LOD 2
+ADD 15
+STO 2
+LOD 0
+ADD 15
+STO 0
+JMP 0
+
+ORG 15
+0x01
+0x04
+```
 
 ## Credits
 Inspired by [c88](https://github.com/aquila12/c88-js), which is based on the [SSEM](https://en.wikipedia.org/wiki/Manchester_Small-Scale_Experimental_Machine). I also have a modified fork of [c88](https://github.com/aquila12/c88-js) called [c1616](https://github.com/wastevensv/c1616-js).

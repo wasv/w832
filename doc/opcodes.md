@@ -1,15 +1,15 @@
 # w8-32 Opcodes
 
- Name           | b7-5   | RTN
-----------------|--------|-----------
-`LD` - Load     |  `000` | `A <- M[i]`
-`ST` - Store    |  `001` | `M[i] <- A`
-`CP` - Compare  |  `010` | `(A - M[i]) == 0? P++`
-`JP` - Jump     |  `011` | `P <- i`
-`AD` - Add      |  `100` | `A <- A + M[i]`
-`NG` - Negate   |  `101` | `A <- -A`
-`AN` - And      |  `110` | `A <- A & M[i]`
-`NT` - Not      |  `111` | `A <- ~A`
+ Name            | b7-5   | RTN
+-----------------|--------|-----------
+`LOD` - Load     |  `000` | `A <- M[i]`
+`STO` - Store    |  `001` | `M[i] <- A`
+`CMP` - Compare  |  `010` | `(A - M[i]) == 0? P++`
+`JMP` - Jump     |  `011` | `P <- i`
+`ADD` - Add      |  `100` | `A <- A + M[i]`
+`NEG` - Negate   |  `101` | `A <- -A`
+`AND` - And      |  `110` | `A <- A & M[i]`
+`NOT` - Not      |  `111` | `A <- ~A`
 
 ## Notation
 * A - Accumulator Register
