@@ -28,7 +28,7 @@ int main(int argc, char **argv ) {
         /* Update display */
         w832_disp(&w832);
 
-        usleep(500000);
+        usleep(250000);
     }
     puts("\e[1;1H\e[2J");
     return 0;
