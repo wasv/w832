@@ -18,12 +18,11 @@ ${INSTALL_DIR}/w832_asm: bin/w832_asm
 	cp $< $@
 
 bin/w832_sim: ${SIM_SRCS}
-	@mkdir -p bin
-	gcc ${CFLAGS} -o $@ ${SIM_SRCS}
-
 bin/w832_asm: ${ASM_SRCS}
+
+bin/*:
 	@mkdir -p bin
-	gcc ${CFLAGS} -o $@ ${ASM_SRCS}
+	gcc ${CFLAGS} -o $@ $^
 
 %.bin: %.hex
 	xxd -r -p $< $@
